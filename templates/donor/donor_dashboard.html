@@ -1,0 +1,169 @@
+{% extends 'donor/donorbase.html' %}
+{% block content %}
+<br><br><br><br>
+<br><br>
+
+<div class="container">
+
+  <h1>ALL TIME REQUEST</h1>
+    <div class="row">
+
+      <div class="col-sm-3">
+        <div class="card bg-light">
+          <div class="card-body">
+              <div class="blood">
+              </div><br>
+              <div>
+                Request Made <br>
+                  {{requestmade}}
+              </div>                            
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="card bg-light">
+            <div class="card-body">
+                <div class="blood">
+                </div><br>
+                <div>
+                    Pending Request <br>
+                    {{requestpending}}
+                </div>                            
+            </div>
+          </div>
+      </div>
+
+      <div class="col-sm-3">
+          <div class="card bg-light">
+              <div class="card-body">
+                  <div class="blood">
+                  </div><br>
+                  <div>
+                       Approved Request<br>
+                      {{requestapproved}}
+                  </div>                            
+              </div>
+            </div>
+      </div>
+      <div class="col-sm-3">
+          <div class="card bg-light">
+              <div class="card-body">
+                  <div class="blood">
+                  </div><br>
+                  <div>
+                       Rejected Request <br>
+                      {{requestrejected}}
+                  </div>                            
+              </div>
+            </div>
+        </div>
+
+    </div>
+    <br><br>
+    <h1>AVAILABLE BLOOD UNITS</h1>
+ <div class="row">
+      <div class="col-sm-3">
+        <div class="card bg-light">
+          <div class="card-body">
+              <div class="blood">
+                  <h2>Blood Group A+ </i></h2>
+              </div><br><br>
+              <div>
+                <h7>Total Bag:  {{A1.unit}}</h7>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+          <div class="card bg-light">
+              <div class="card-body">
+                  <div class="blood">
+                      <h2>Blood Group B+ </i></h2>
+                  </div><br><br>
+                  <div>
+                    <h7>Total Bag: {{B1.unit}}</h7>
+                  </div>
+              </div>
+            </div>
+      </div>
+      <div class="col-sm-3">
+          <div class="card bg-light">
+              <div class="card-body">
+                  <div class="blood">
+                      <h2>Blood Group O+ </h2>
+                  </div><br><br>
+                  <div>
+                    <h7>Total Bag: {{O1.unit}}</h7>
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card bg-light">
+              <div class="card-body">
+                  <div class="blood">
+                      <h2>Blood Group AB+ </i></h2>
+                  </div><br><br>
+                  <div>
+                    <h7>Total Bag: {{AB1.unit}}</h7>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div><br><br>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="card bg-light">
+          <div class="card-body">
+              <div class="blood">
+                  <h2>Blood Group A- </i></h2>
+              </div><br><br>
+              <div>
+                <h7>Total Bag: {{A2.unit}}</h7>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+          <div class="card bg-light">
+              <div class="card-body">
+                  <div class="blood">
+                      <h2>Blood Group B- </i></h2>
+                  </div><br><br>
+                  <div>
+                    <h7>Total Bag: {{B2.unit}}</h7>
+                  </div>
+              </div>
+            </div>
+      </div>
+      <div class="col-sm-3">
+          <div class="card bg-light">
+              <div class="card-body">
+                  <div class="blood">
+                      <h2>Blood Group O-</i></h2>
+                  </div><br><br>
+                  <div>
+                    <h7>Total Bag: {{O2.unit}}</h7>
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card bg-light">
+              <div class="card-body">
+                  <div class="blood">
+                      <h2>Blood Group AB- </i></h2>
+                  </div><br><br>
+                  <div>
+                    <h7>Total Bag: {{AB2.unit}}</h7>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+<hr>
+<br>
+
+</div>
+{% endblock content %}

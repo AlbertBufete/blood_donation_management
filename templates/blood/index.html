@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <style>
+        body{
+          background-image: url('{% static "image/bg.jpg" %}');
+          background-repeat:no-repeat;
+          background-size:100vw 100vh;
+          overflow: scroll;
+        }
+        .announcement-container{
+          width:100%;
+          padding-top:10px;
+          border-radius:20px;
+          align-items:center;
+      }
+      .announcement-title{
+      }
+      .announcement-date{
+          width:100%;
+          text-align:right;
+          padding-right:100px;
+          padding-bottom:50px;
+      }
+      .announcement{
+          position:relative;
+          width:80%;
+          text-align: justify;
+          padding-top:20px;
+          width: -moz-fit-content;
+          width: fit-content;
+        padding: 50px;
+        margin-bottom: 1em;
+        border: 5px solid maroon;
+        border-radius: 20px;
+      }
+        /* width */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius:20px;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius:20px;
+
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+        .map{
+          width: 100%;
+          position: relative;
+          padding-top: 150px;
+          padding-left: 50px;
+          display: flex;
+          padding-bottom: 100px;
+        }
+        iframe{
+          width: 50%;
+          height: 500px;
+        }
+        .infobox{
+          width:750px;
+          padding-top: 80px;
+          border-radius: 20px;
+          background: #800000;
+          position: relative;
+          margin-left: 50px;
+        }
+        h2{
+          margin-top: 10px;
+          text-align:center;
+          margin:10px;
+          background: #fff;
+        }
+        ul{
+            padding:0;
+            list-style:none;
+            line-height:1.6;
+            font-size:14px;
+            margin-bottom:0;
+        }
+        ul a {
+          color:inherit;
+          text-decoration:none;
+          opacity:0.8;
+        }
+      </style> 
+</head>
+
+<body>
+  {% include "blood/navbar.html" %}
+
+  <div style="background:rgba(255,255,255,.4);height:100vh;width:100vw;position:absolute;">
+    <p style="text-align:left;font-size:100px;position:absolute;margin-left:3vw;">A SINGLE DROP<br> OF <font color="red">BLOOD</font><br> CAN MAKE <br>A HUGE<br><font color="red"> DIFFERENCE</font></p>
+                <h1 style="padding-top:10px;padding-bottom:10px;background:rgba(255,255,255,0.9);border-radius:20px;width:30vw;position:relative;left:65vw;text-align:center;margin-top:10vh; ">PUBLIC ADVISORY</h1>
+    <div class="container text-center" style="overflow-y:scroll;border-radius:10px;position:relative;left:30vw;width:30vw;height:60vh;margin-top:3vh;background:rgba(255,255,255,0.9);">
+                    {% for t in announcement %}
+
+<div class = "announcement-container">
+                <h3 class = "announcement-title">{{ t.title}}</h3>
+    <p class = "announcement">
+        {{ t.body }}
+    </p>
+    <p class = "announcement-date">{{ t.date }}</p>
+  </div>
+        {% endfor %}
+
+    </div>
+    <div class = "map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.872559197385!2d121.0213680512037!3d14.606334789748752!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b6285e3026dd%3A0xa0e264c37b63d4c5!2sSan%20Juan%20Medical%20Center!5e0!3m2!1sen!2sph!4v1674710952830!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+       <div class = "infobox">
+         <h2>Mission</h2>
+         <p style="text-align:center; padding: 10px; color:white"> San Juan Medical Center is committed to provide sustained, excellent health services to San Juanenos and nearby communities in delivering patient satisfaction through compassionate health workers utilizing innovative and technology-based facilites.</p>
+         <h2>Vision</h2>
+         <p style="text-align:center; padding: 10px; color:white"> Preferred tertiart local government hospital responsive to the health needs of the people of San Juan with innovative and technology-based facilities by 2025.</p>
+       </div>
+
+     </div>
+</div>
+
+      <div class ="footer" style = "width:100%;background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgba(255,0,0,1));height:300px;position:relative;margin-top:1500px;">
+        <h3 style="text-align:left;padding:30px;font-size:15px;color:black;font-family:math;text-align:center;">Keep in touch with other Department</h3>
+        <div class="row">
+          <div class="column">
+            <ul>
+                <li style="text-align: center;"><a href="https://www.facebook.com/sjmcanesthesiology" style="text-align:center;">SJMC Department of Anesthesiology</li>
+                <li style="text-align: center;"><a href="https://www.facebook.com/cirujanosdesanjuan/" style="text-align:center;">SJMC Department of Surgery</li>
+                <li style="text-align: center;"><a href="https://www.facebook.com/sjmced2020" style="text-align:center;">SJMC Emergency Department 2020</li>
+                <li style="text-align: center;"><a href="https://www.facebook.com/sjmcpediatrics/" style="text-align:center;">SJMC Pediatrics</li>
+            </ul>
+          </div>
+          
+          <div class="column">
+            <ul>
+                <li style="text-align: center;"><a href="https://www.facebook.com/SJMCENTHNS" style="text-align:center;">San Juan Medical Center ENT-Head and Neck Surgery</li>
+                <li style="text-align: center;"><a href="https://www.facebook.com/sjmcobgyn" style="text-align:center;">San Juan Medical Center Obstetrics and Gynecology</li>
+                <li style="text-align: center;"><a href="https://www.facebook.com/sanjuanmedicalcentereyeclinic" style="text-align:center;">San Juan Medical Center Ophthalmology Department</li>
+                <li style="text-align: center;"><a href="https://www.facebook.com/sjmcopd" style="text-align:center;">San Juan Medical Center Out Patient Department</li>
+            </ul>
+          </div>
+        </div>
+
+          <div class="container text-center">
+            <p class="text-muted mb-0 py-2">© All rights reserved.</p>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

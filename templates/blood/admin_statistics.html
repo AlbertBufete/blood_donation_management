@@ -1,0 +1,40 @@
+{% extends 'blood/adminbase.html' %}
+{% block content %}
+<br><br>
+<script>
+window.onload = function() {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "Blood group ratio"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+			{y: "{{A1ratio}}", label: "A+"},
+			{y: "{{A2ratio}}", label: "A-"},
+			{y: "{{B1ratio}}", label: "B+"},
+			{y: "{{B2ratio}}", label: "B-"},
+			{y: "{{O1ratio}}", label: "O+"},
+			{y: "{{O2ratio}}", label: "O-"},
+			{y: "{{AB1ratio}}", label: "AB+"},
+			{y: "{{AB2ratio}}", label: "AB-"},
+
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+<div id="chartContainer" style="height: 500px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<div class="container">
+
+
+
+{% endblock content %}

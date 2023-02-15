@@ -1,0 +1,162 @@
+{% extends 'blood/adminbase.html' %}
+{% block content %}
+{% load widget_tweaks %}
+{%load static%}
+<head>
+    <style>
+        .label {
+     color: white;
+     padding: 8px;
+   }
+.box{
+    color:  #fff;
+    background: #909090;
+  }
+   .success {background-color: #4CAF50;} /* Green */
+   .info {background-color: #2196F3;} /* Blue */
+   .warning {background-color: #ff9800;} /* Orange */
+   .danger {background-color: #f44336;} /* Red */
+   .other {background-color: #e7e7e7; color: black;} /* Gray */
+    /* The Modal (background) */
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 30%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+    </style>
+   </head>
+<br><br>
+<div class="container">
+    <H4 class="text-center">BLOOD DONATION DETAILS</H4><br>
+    <table class="table table-light table-hover table-bordered table-striped">
+        <thead class="box">
+            <tr>
+                <th scope="col">Donor Name</th>
+                <!--<th scope="col">Disease</th>-->
+                <th scope="col">Age</th>
+                <th scope="col">Blood Group</th>
+                <th scope="col">Unit</th>
+                <th scope="col">Request Date</th>
+                <th scope="col">Status</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in donations %}
+            <tr>
+                <td> {{t.donor}}</td>
+                <!--<td> {{t.disease}}</td>-->
+                <td> {{t.age}}</td>
+                <td>{{t.bloodgroup}}</td>
+                <td>{{t.unit}}</td>
+                <td>{{t.date}}</td>
+                <td>{{t.status}}</td>
+                {% if t.status == 'Pending' %}
+                <td class="text-center">
+                    <button class="btn btn-primary badge-pill" style="width: 100px;"><a  style="text-decoration: none;color: white;" href="{% url 'blood-test' t.id  %}">TEST</a> </button>
+                </td>
+                {% elif  t.status == 'Approved' %}
+                <td><span class="label warning">{{t.unit}} Unit Added To Stock</span></td>
+
+                {% else %}
+                <td><span class="label danger">0 Unit Added To Stock</span></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+</div>
+{% if blood_test_upload %}
+
+        <!-- The Modal -->
+<div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+              <h2>Success!</h2>
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <br>
+          <p style="text-align:center;">You have successfully tested a donor donation</p>
+            <br>
+
+        </div>
+
+      </div>
+    </div>
+{% endif %}
+<script>
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+</script>
+{% endblock content %}

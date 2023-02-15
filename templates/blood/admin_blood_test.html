@@ -1,0 +1,340 @@
+{% extends 'blood/adminbase.html' %}
+{% block content %}
+{% load widget_tweaks %}
+{%load static%}
+<style>
+    #save-div{
+        text-align:right;
+        margin-top:100px;
+    }
+    #survey-form{
+
+    border-radius:.5rem;
+        margin:auto;
+        width:610px;
+        padding-top:50px;
+        padding-left:20px;
+        padding-right:40px;
+        padding-bottom:30px;
+        background:rgba(252,242,242);
+  box-shadow: 0px 0px 10px 5px #A2A2A2;
+}
+    form{
+        border-radius:.5rem;
+        margin:auto;
+        width:610px;
+        padding-top:50px;
+        padding-left:20px;
+        padding-right:40px;
+        padding-bottom:30px;
+        background:rgba(252,242,242);
+  box-shadow: 0px 0px 10px 5px #A2A2A2;
+
+    }
+    input {
+        width: 20px;
+        height: 20px;
+      }
+    textarea{
+            border:none;
+        width:193px;
+                border-radius:5px;
+
+        resize:none;
+    }
+    .page-wrapper{
+    }
+    .submit-div{
+        text-align:right;
+        margin-top:50px;
+    }
+    .input-a{
+        width:100%;
+        text-align:left;
+    }
+    label{
+        width:60%;
+    }
+    .input-div{
+        width:40%;
+        text-align:right;
+    }
+    .options-div div p{
+        color:blue;
+    }
+</style>
+<br><br>
+<div class="page-wrapper">
+    <div id="survey-form" method="post" action="donate-blood">
+              {% csrf_token %}
+        <div class = 'question-div'>
+              <p style="text-align:left;">1.Masigla ba ang pangangatawan mo ngayong araw? Nakatulog ba ng wasto? (Do you feel healthy today?)</p><br>
+          <div class = "options-div">
+              <div >
+                 <p>Answer:{% if survey_answers %}{{ survey_answers.0.value }}{% endif %}</p>
+              </div>
+          </div>
+          <div class = 'question-div'>
+              <p style="text-align:left;">2.	May iniinom ba na gamut sangayon? Kung Oo ang sagot, maaring isulat ang gamut na ininom: (Currently taking medication?, if yes please specify)</p><br>
+          <div class = "options-div">
+                <p>Answer:{% if survey_answers %}{{ survey_answers.1.value }}{% endif %}</p>
+          </div>
+        <div class = 'question-div'>
+              <p style="text-align:left;">3.	Nakatanggap ba ng anumang uri ng bakuna? (Have you received any vaccination?)</p><br>
+          <div class = "options-div">
+              <div >
+                 <p>Answer:{% if survey_answers %}{{ survey_answers.2.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+        <div class = 'question-div'>
+              <p style="text-align:left;">4.	Nakainom ba ng aspirin o gamut na may sangkap ng aspirin?
+(Have you taken aaspirin or anything that has aspirin in it?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                 <p>Answer:{% if survey_answers %}{{ survey_answers.3.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+        <div class = 'question-div'>
+              <p style="text-align:left;">5.	Nabuntis ba nitong mga nakaraang 6 na lingo, o ikaw ba ay buntis ngayon?
+(in the past 6 weeks, have you been pregnant or are you pregnant right now
+<br>
+          <div class = "options-div">
+              <div >
+                 <p>Answer:{% if survey_answers %}{{ survey_answers.4.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">6.	Ikaw ba ay nagbigay ng dugo?(
+(Donated blood, platelet, or plasma?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                 <p>Answer:{% if survey_answers %}{{ survey_answers.5.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">7.	Nasalinan ba ng dugo? Sumailalim ba sa anumang operasyon? Nagpabunot ng ngipin?
+(Had a blood tansfusion? Had Surgical operation? Dental Extraction?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                 <p>Answer:{% if survey_answers %}{{ survey_answers.6.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">8.	Ikaw ba ay nagpatattoo? Nagpahikaw? O natusok ng karayom?
+(Had a tattoo, ear or body piercing, accidental contact with blood, needle-stick injury, and acupuncture?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                 <p>Answer:{% if survey_answers %}{{ survey_answers.7.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">9.	Nakipagtaliksa hindi kakilala, bayarang babae o sa kapwa lalaki o babae?
+(Had sexual contact with high-risk individual)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <p>Answer:{% if survey_answers %}{{ survey_answers.8.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">10.	Nakipagtalik sa mga taong nangibang bansa?
+(Had sexual contact with person who has worked abroad?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <p>Answer:{% if survey_answers %}{{ survey_answers.9.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">11.	Nakipagtalik ba sa isang tao kapalit ng salapi?
+(Had sexual contact with anyone in exchange for material or monetary gain?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <p>Answer:{% if survey_answers %}{{ survey_answers.10.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">12.	May kasama ba sa bahay na may sakit sa atay? Nakulong ka ba dati?
+(Lived with a person with hepatitis?, Have you been imprisoned?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <p>Answer:{% if survey_answers %}{{ survey_answers.11.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">13.	Meron bang may sakit na Mad Cow Disease (Creutzfeld-Jakob) sa pamilya?
+(Have any of your relative had Creutzfeld-Jakob (Mad Cow) disease?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <p>Answer:{% if survey_answers %}{{ survey_answers.12.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">14.	Naninirahan sa ibang lugar bukod sa inyong kasalukuyang tirahan? O nanirahan salabas ng Pilipinas? (Lived outside your place of residence? Live outside the Philippines?)</p><br>
+          <div class = "options-div">
+              <div >
+                  <p>Answer:{% if survey_answers %}{{ survey_answers.13.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">15.	Uminomba ng gamut o nagturok ng mga gamut na hindi nireseta ng doctor?
+(Useed needles to take drugs, steroids, or anything not prescribed by your doctor?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <p>Answer:{% if survey_answers %}{{ survey_answers.14.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">16.	Naging positibo basa mga sakit na ito: HIV/AIDS, hepatitis, Syphilis or Malaria
+(Had a positive test for the HIV virus, Hepatits virus, Syphilis or Malaria?)
+
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <p>Answer:{% if survey_answers %}{{ survey_answers.15.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">17.	Ginamot ka ba dahil sas akit na tulo o gonorrhea?
+(Been treated for genital warts, syphilis, gonorrhea or other sexually transmissible infrections?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <p>Answer:{% if survey_answers %}{{ survey_answers.16.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">18.	Alam mo ba na kung ikaw ay may saki tna AID ay maaari mo itong maisalin sa iba kahit masigla ang pangangatawan mo o negatibo ka sa mga laboratory test?
+(Are you aware that if you have the HIVE/Hepatits virus, you can give it to someone else though you may feel well and have a negative HIV/Hepatitis test?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <p>Answer:{% if survey_answers %}{{ survey_answers.17.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">19.	Ikaw ba ay magbiibgay ng duo dahil gusto mong mag pasurisa HIV o Hepatitis?
+(are you giving blood because you wanted to be tested for HIV/Hepatitis virus?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <p>Answer:{% if survey_answers %}{{ survey_answers.18.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">20.	Nagkaroon ba ng paninikip ng dibdib, sakitsapuso, TB, Asthma, diabestes, sakitsabato, or cancer sadugo?
+(Have you ever experience any of the following: Chest pain, Heart disease, tuberculosis, Asthma, diabetes, kindey disease, cancer, ulcer, bleeding disorder?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <p>Answer:{% if survey_answers %}{{ survey_answers.19.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">21.	Nagkaroon ng biglaang pagbaba ng timbang? Hindi maipaliwanag na pagpapawis o lagnat sa gabi? O mga di maipaliwanag na pagdurugo? Malubha o paulit-ulit na pagtatae?
+(Experienced suddent weight loss, unexplained night sweats, or bleeding disorder? Persistent diarrhea?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <p>Answer:{% if survey_answers %}{{ survey_answers.20.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;">22.	Nakainom ba sa nakalipas na 12 oras? Magmamaneho ka ba sa susunod na 12 oras?}
+(In the last 12 hours, have you intake liquor or alcohol? Intend to drive any heavy tansport vehicles?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <p>Answer:{% if survey_answers %}{{ survey_answers.21.value }}{% endif %}</p>
+              </div>
+          </div>
+
+        </div>
+     <div class = 'question-div'>
+              <p style="text-align:left;">23.	Naintindihan ba ang lahat ng mgakatanungan at nagawa bang sagutin ang mgaito ng wasto?
+(Did you understand all the questions presented to you?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <p>Answer:{% if survey_answers %}{{ survey_answers.22.value }}{% endif %}</p>
+              </div>
+          </div>
+
+     </div>
+          </div>
+        </div>
+              <br><br><br>
+
+
+          </div>
+    <br><br>
+                    <form method="POST">
+
+                        {% csrf_token %}
+                        <p class="input-a"><label>Hepatitis B virus Test (Check if positive):</label><label class = 'input-div'>{% render_field blood_test_form.hepaB %}</label></p>
+                        <p class="input-a"><label>Hepatitis C virus Test (Check if positive):</label><label class = 'input-div'>{% render_field blood_test_form.hepaC   %}</label></p>
+                        <p class="input-a"><label>HIV-1 Test (Check if positive):</label><label class = 'input-div'>{% render_field blood_test_form.hiv1  %}</label></p>
+                        <p class="input-a"><label>HIV-2 Test (Check if positive):</label><label class = 'input-div'>{% render_field blood_test_form.hiv2  %}</label></p>
+                        <p class="input-a"> <label>HTLV-I Test (Check if positive):</label><label class = 'input-div'>{% render_field blood_test_form.htlv1 %}</label></p>
+                        <p class="input-a"><label>HTLV-II Test (Check if positive):</label><label class = 'input-div'>{% render_field blood_test_form.htlv2  %}</label></p>
+                        <p class="input-a"> <label>Syphilis Test (Check if positive): </label><label class = 'input-div'>{% render_field blood_test_form.syphilis  %}</label></p>
+                        <p class="input-a"> <label>West Nile virus Test (Check if positive): </label><label class = 'input-div'>{% render_field blood_test_form.westNile  %}</label></p>
+                        <p class="input-a"> <label>Trypanosoma cruzi Test (Check if positive): </label><label class = 'input-div'>{% render_field blood_test_form.trypanosomaC  %}</label></p>
+                        <p class="input-a"> <label>Babesia Test (Check if positive):</label><label class = 'input-div'>{% render_field blood_test_form.babesia  %}</label></p>
+                        <div class = "submit-div">
+                        <button class="btn btn--radius-2 btn-danger" type="submit">Submit</button>
+                        </div>
+
+
+                    </form>
+
+    </div>
+
+
+{% endblock content %}

@@ -1,0 +1,420 @@
+{% extends 'donor/donorbase.html' %}
+{% block content %}
+{% load widget_tweaks %}
+{%load static%}
+<head>
+        <!-- Font special for pages-->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+        <!-- Main CSS-->
+
+        <link href="{% static "css/main.css" %}"rel="stylesheet" media="all">
+    <style>
+    /* The Modal (background) */
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+        /* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 700px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #df2036;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+
+
+
+.options-div{
+    text-align:center;
+    color:blue;
+}
+.option-y{
+    margin-right:20px;
+}
+.option-n{
+    margin-left:20px;
+
+}
+.input-div{
+    text-align:center;
+}
+.input-div input{
+        width:200px;
+        border:1px solid black;
+        border-color:blue;
+        padding: 5px 10px 5px 10px;
+}
+.question-div{
+    margin-top:20px;
+}
+#survey-form{
+    height:300px;
+    padding-left:20px;
+    padding-right:20px;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.submit-div{
+    text-align:left;
+    margin-right:20px;
+}
+#survey-submit{
+    background-color:green;
+    color:white;
+    width:150px;
+    height:50px;
+    border-radius:5px;
+}
+    </style>
+</head>
+<br><br><br>
+<div class="page-wrapper">
+     <form id="survey-form" method="post" action="donate-blood">
+              {% csrf_token %}
+        <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">1.Masigla ba ang pangangatawan mo ngayong araw? Nakatulog ba ng wasto? (Do you feel healthy today?)</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question1" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question1" value="no"></label></a>
+              </div>
+          </div>
+          <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">2.	May iniinom ba na gamut sangayon? Kung Oo ang sagot, maaring isulat ang gamut na ininom: (Currently taking medication?, if yes please specify)</p><br>
+          <div class = "input-div">
+                <input type="text"  name="question2">
+          </div>
+        <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">3.	Nakatanggap ba ng anumang uri ng bakuna? (Have you received any vaccination?)</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question3" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question3" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+        <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">4.	Nakainom ba ng aspirin o gamut na may sangkap ng aspirin?
+(Have you taken aaspirin or anything that has aspirin in it?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question4" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question4" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+        <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">5.	Nabuntis ba nitong mga nakaraang 6 na lingo, o ikaw ba ay buntis ngayon?
+(in the past 6 weeks, have you been pregnant or are you pregnant right now
+<br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question5" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question5" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">6.	Ikaw ba ay nagbigay ng dugo?(
+(Donated blood, platelet, or plasma?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question6" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question6" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">7.	Nasalinan ba ng dugo? Sumailalim ba sa anumang operasyon? Nagpabunot ng ngipin?
+(Had a blood tansfusion? Had Surgical operation? Dental Extraction?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question7" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question7" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">8.	Ikaw ba ay nagpatattoo? Nagpahikaw? O natusok ng karayom?
+(Had a tattoo, ear or body piercing, accidental contact with blood, needle-stick injury, and acupuncture?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question8" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question8" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">9.	Nakipagtaliksa hindi kakilala, bayarang babae o sa kapwa lalaki o babae?
+(Had sexual contact with high-risk individual)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input  required type="radio"  name="question9" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input  required type="radio" name="question9" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">10.	Nakipagtalik sa mga taong nangibang bansa?
+(Had sexual contact with person who has worked abroad?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question10" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question10" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">11.	Nakipagtalik ba sa isang tao kapalit ng salapi?
+(Had sexual contact with anyone in exchange for material or monetary gain?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question11" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question11" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">12.	May kasama ba sa bahay na may sakit sa atay? Nakulong ka ba dati?
+(Lived with a person with hepatitis?, Have you been imprisoned?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question12" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question12" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">13.	Meron bang may sakit na Mad Cow Disease (Creutzfeld-Jakob) sa pamilya?
+(Have any of your relative had Creutzfeld-Jakob (Mad Cow) disease?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question13" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question13" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">14.	Naninirahan sa ibang lugar bukod sa inyong kasalukuyang tirahan? O nanirahan salabas ng Pilipinas? (Lived outside your place of residence? Live outside the Philippines?)</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question14" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question14" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">15.	Uminomba ng gamut o nagturok ng mga gamut na hindi nireseta ng doctor?
+(Useed needles to take drugs, steroids, or anything not prescribed by your doctor?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question15" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question15" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">16.	Naging positibo basa mga sakit na ito: HIV/AIDS, hepatitis, Syphilis or Malaria
+(Had a positive test for the HIV virus, Hepatits virus, Syphilis or Malaria?)
+
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question16" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question16" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">17.	Ginamot ka ba dahil sas akit na tulo o gonorrhea?
+(Been treated for genital warts, syphilis, gonorrhea or other sexually transmissible infrections?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question17" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question17" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">18.	Alam mo ba na kung ikaw ay may saki tna AID ay maaari mo itong maisalin sa iba kahit masigla ang pangangatawan mo o negatibo ka sa mga laboratory test?
+(Are you aware that if you have the HIVE/Hepatits virus, you can give it to someone else though you may feel well and have a negative HIV/Hepatitis test?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question18" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question18" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">19.	Ikaw ba ay magbiibgay ng duo dahil gusto mong mag pasurisa HIV o Hepatitis?
+(are you giving blood because you wanted to be tested for HIV/Hepatitis virus?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question19" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question19" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">20.	Nagkaroon ba ng paninikip ng dibdib, sakitsapuso, TB, Asthma, diabestes, sakitsabato, or cancer sadugo?
+(Have you ever experience any of the following: Chest pain, Heart disease, tuberculosis, Asthma, diabetes, kindey disease, cancer, ulcer, bleeding disorder?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question20" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question20" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">21.	Nagkaroon ng biglaang pagbaba ng timbang? Hindi maipaliwanag na pagpapawis o lagnat sa gabi? O mga di maipaliwanag na pagdurugo? Malubha o paulit-ulit na pagtatae?
+(Experienced suddent weight loss, unexplained night sweats, or bleeding disorder? Persistent diarrhea?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question21" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question21" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+                      <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">22.	Nakainom ba sa nakalipas na 12 oras? Magmamaneho ka ba sa susunod na 12 oras?}
+(In the last 12 hours, have you intake liquor or alcohol? Intend to drive any heavy tansport vehicles?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question22" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question22" value="no"></label></a>
+              </div>
+          </div>
+
+        </div>
+     <div class = 'question-div'>
+              <p style="text-align:left;font-size: 18px;">23.	Naintindihan ba ang lahat ng mgakatanungan at nagawa bang sagutin ang mgaito ng wasto?
+(Did you understand all the questions presented to you?)
+</p><br>
+          <div class = "options-div">
+              <div >
+                  <a class="option-y">Oo &nbsp <label> <input required type="radio"  name="question23" value="yes" checked></label></a>
+                  <a class="option-n" > Hindi &nbsp  <label> <input required type="radio" name="question23" value="no"></label></a>
+              </div>
+          </div>
+
+     </div>
+          </div>
+        </div>
+              <br><br><br>
+              <p>
+                  By clicking the submit button, I certify that I am the person referred to in all entries, which were read and well understood by me. It is my free and voluntary act to donate my blood, aware of its risks during and after extractions. The same have been explained to me in understandable language and dialect that I speak.
+              </p><br><br>
+              <div class = 'submit-div'><button id="survey-submit">Submit</button></div>
+              <br><br>
+
+          </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,165 @@
+{% extends 'blood/adminbase.html' %}
+{% block content %}
+<style>
+    #exportBtn{
+        border-radius:5px;
+        cursor:pointer;
+        color:white;
+        background:green;
+        padding-left:8px;
+        padding-right:8px;
+        border:none;
+        padding-top:10px;
+        padding-bottom:10px;
+    }
+    a:link { text-decoration: none; }
+    a:visited { text-decoration: none; }
+
+
+</style>
+<br><br>
+<div class="container">
+    <h3>Requests Today</h3>
+    <div class="row">
+        <div class="col-sm-3">
+        <div class="card bg-light">
+          <div class="card-body">
+              <div class="blood">
+              </div><br>
+              <div>
+                  Total Approved Blood Donations <br>
+                  {{approvedBloodDonatesToday}}
+              </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="col-sm-3">
+        <div class="card bg-light">
+          <div class="card-body">
+              <div class="blood">
+              </div><br>
+              <div>
+                  Total Pending Blood Donations <br>
+                  {{pendingBloodDonatesToday}}
+              </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="col-sm-3">
+        <div class="card bg-light">
+          <div class="card-body">
+              <div class="blood">
+              </div><br>
+              <div>
+                  Total Rejected Blood Donations <br>
+                  {{rejectedBloodDonatesToday}}
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="border-bottom:1px solid grey;">
+        <div class="col-sm-3">
+        <div class="card bg-light">
+          <div class="card-body">
+              <div class="blood">
+              </div><br>
+              <div>
+                  Total Approved Blood Requests <br>
+                  {{approvedBloodRequestsToday}}
+              </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="col-sm-3">
+        <div class="card bg-light">
+          <div class="card-body">
+              <div class="blood">
+              </div><br>
+              <div>
+                  Total Pending Blood Requests <br>
+                  {{pendingBloodRequestsToday}}
+              </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="col-sm-3">
+        <div class="card bg-light">
+          <div class="card-body">
+              <div class="blood">
+              </div><br>
+              <div>
+                  Total Rejected Blood Requests <br>
+                  {{rejectedBloodRequestsToday}}
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+            <h3>All Time Requests</h3>
+    <div class="row">
+
+      <div class="col-sm-3">
+        <div class="card bg-light">
+          <div class="card-body">
+              <div class="blood">
+              </div><br>
+              <div>
+                  Total Donors <br>
+                  {{totaldonors}}
+              </div>                            
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+          <div class="card bg-light">
+              <div class="card-body">
+                  <div class="blood">
+                  </div><br>
+                  <div>
+                      Total Requests <br>
+                     {{totalrequest}}
+                  </div>                            
+              </div>
+            </div>
+      </div>
+      <div class="col-sm-3">
+          <div class="card bg-light">
+              <div class="card-body">
+                  <div class="blood">
+                  </div><br>
+                  <div>
+                      Approved Requests <br>
+                      {{totalapprovedrequest}}
+                  </div>                            
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card bg-light">
+              <div class="card-body">
+                  <div class="blood">
+                  </div><br>
+                  <div>
+                      Total Blood Unit (in ml) <br>
+                      {{totalbloodunit}}
+                  </div>                            
+              </div>
+            </div>
+        </div>
+        <br>
+        <br>
+    </div>
+    <br>
+    <button id="exportBtn"><a href="static/reports/{{reportFileName}}" target="_blank" style="text-decoration: none;color: white;">Export To Excel</a></button>
+</div>
+
+
+{% endblock content %}

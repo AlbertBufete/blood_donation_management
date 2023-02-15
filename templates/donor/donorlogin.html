@@ -1,0 +1,82 @@
+{%load static%}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+      
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
+ 
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Main CSS-->
+    <link href="{% static "css/main.css" %}"rel="stylesheet" media="all">
+    <style>
+        body{
+          background-image: url('{% static "image/bg.jpg" %}');
+          background-repeat:no-repeat;
+          background-size:100vw 100vh;
+        }
+    </style>
+  </head>
+  <body>
+    {% include "blood/navbar.html" %}
+
+
+
+
+<div style="background:rgba(255,255,255,.4);height:100vh;width:100vw;position:fixed;">
+    <p style="text-align:left;font-size:100px;position:fixed;margin-left:3vw;">A SINGLE DROP<br> OF <font color="red">BLOOD</font><br> CAN MAKE <br>A HUGE<br><font color="red"> DIFFERENCE</font></p>
+          <div style="width:40vw;position:relative;left:55vw;">
+            <br><br><br>
+            <div class="card card-5">
+                <div style="padding-top:20px;padding-bottom:20px;color:black;text-align:center;border-radius:20px;">
+                    <h2>DONOR LOGIN</h2>
+                </div>
+                <h4 style="margin-left:40px;">WELCOME!</h4>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="name">Username</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    {% render_field form.username class="input--style-5"%}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Password</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    {% render_field form.password class="input--style-5" %}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        
+
+                        <div>
+                                <button style="position:relative;left:-3vw;background:#4890ff;padding-left:20px;padding-right:20px;padding-top:10px;padding-bottom:10px;border-radius:20px;" type="submit">SIGN-IN</button>
+                        </div>
+                    </form>
+                    <br>
+                    <br>
+                    <p style="text-align: left;position:relative;left:-3vw;">DON'T HAVE AN ACCOUNT? </p>
+                    <a style="position:relative;left:-3vw;background:#4890ff;padding-left:20px;padding-right:20px;padding-top:10px;padding-bottom:10px;border-radius:20px;"href="/donor/donorsignup"><button>CREATE AN ACCOUNT</button></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

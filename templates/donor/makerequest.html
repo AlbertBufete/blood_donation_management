@@ -1,0 +1,81 @@
+{% extends 'donor/donorbase.html' %}
+{% block content %}
+{% load widget_tweaks %}
+{%load static%}
+<head>
+        <!-- Font special for pages-->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+        <!-- Main CSS-->
+    
+        <link href="{% static "css/main.css" %}"rel="stylesheet" media="all">
+</head>
+
+<div class="page-wrapper" style="margin-top:200px;">
+    <div class="wrapper wrapper--w790">
+      
+        <div style="margin-left: 70px;" class="card card-5">
+            <div class="card-heading" style="background:#a8a8a8;">
+                <h2 class="title">BLOOD REQUEST</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" autocomplete="off" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+
+
+
+                    <div class="form-row">
+                        <div class="name">Reason</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {% render_field request_form.reason|attr:'required:true'  class="input--style-5"  %}
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-row">
+                        <div class="name">Unit (in ml)</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {% render_field request_form.unit|attr:'required:true'  class="input--style-5"  %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">Proof Category 1</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {% render_field request_form.proof  class="input--style-5"  %}
+                            </div>
+                        </div>
+                    </div>
+                <div class="form-row">
+                        <div class="name">Proof Category 2</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {% render_field request_form.proof2  class="input--style-5"  %}
+                            </div>
+                        </div>
+                    </div>
+                <div class="form-row">
+                        <div class="name">Proof Category 3</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {% render_field request_form.proof3  class="input--style-5"  %}
+                            </div>
+                        </div>
+                    </div>
+                        <button class="btn btn--radius-2 btn-info" type="submit">REQUEST</button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
